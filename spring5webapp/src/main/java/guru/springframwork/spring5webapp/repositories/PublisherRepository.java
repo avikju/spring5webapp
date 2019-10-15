@@ -5,12 +5,12 @@ package guru.springframwork.spring5webapp.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import guru.springframwork.spring5webapp.model.Author;
+import guru.springframwork.spring5webapp.model.Publisher;
 
 /**
  * @author Avik
  *
  */
-public interface AuthorRepository extends CrudRepository<Author, Long>{
+public interface PublisherRepository extends CrudRepository<Publisher, Long> {
 
 }
