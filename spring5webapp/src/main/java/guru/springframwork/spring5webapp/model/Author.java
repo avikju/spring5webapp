@@ -12,24 +12,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**
  * @author Avik
  *
  */
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Author {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String firstName;
 	private String lastName;
-	
-	@ManyToMany(mappedBy="authors")
-	private Set<Book> books=new HashSet<>();
-	
-	public Author() {}
+
+	@ManyToMany(mappedBy = "authors")
+	private Set<Book> books = new HashSet<>();
+
+	public Author() {
+	}
 
 	public Author(String firstName, String lastName, Set<Book> books) {
 		super();
@@ -37,27 +42,33 @@ public class Author {
 		this.lastName = lastName;
 		this.books = books;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public Author(String firstName, String lastName) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
+
 	public Set<Book> getBooks() {
 		return books;
 	}
+
 	public void setBooks(Set<Book> books) {
 		this.books = books;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
@@ -99,7 +110,5 @@ public class Author {
 	public String toString() {
 		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", books=" + books + "]";
 	}
-	
-	
 
 }

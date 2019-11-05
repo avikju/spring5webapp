@@ -20,7 +20,7 @@ public class BookController {
 	@Autowired
 	private BookRepository bookRepo;
 
-	@RequestMapping("/books")
+	@RequestMapping("/all_books")
 	public String getBooks(Model model) {
 		model.addAttribute("books", bookRepo.findAll());
 		return "books";

@@ -20,7 +20,7 @@ public class AuthorController {
 	@Autowired
 	private AuthorRepository authorRepo;
 
-	@RequestMapping("/authors")
+	@RequestMapping("/all_authors")
 	public String getAuthors(Model model) {
 		model.addAttribute("authors", authorRepo.findAll());
 		return "authors";

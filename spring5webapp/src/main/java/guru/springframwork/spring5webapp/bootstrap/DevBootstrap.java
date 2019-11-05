@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import guru.springframwork.spring5webapp.model.Author;
 import guru.springframwork.spring5webapp.model.Book;
 import guru.springframwork.spring5webapp.model.Publisher;
-import guru.springframwork.spring5webapp.repositories.AuthorRepository;
-import guru.springframwork.spring5webapp.repositories.BookRepository;
-import guru.springframwork.spring5webapp.repositories.PublisherRepository;
+import guru.springframwork.spring5webapp.services.AuthorService;
+import guru.springframwork.spring5webapp.services.BookService;
+import guru.springframwork.spring5webapp.services.PublisherService;
 
 /**
  * @author Avik
@@ -23,11 +23,11 @@ import guru.springframwork.spring5webapp.repositories.PublisherRepository;
 public class DevBootstrap {
 
 	@Autowired
-	private BookRepository bookRepo;
+	private BookService bookService;
 	@Autowired
-	private AuthorRepository authorRepo;
+	private AuthorService authorService;
 	@Autowired
-	private PublisherRepository publisherRepo;
+	private PublisherService publisherService;
 
 	@EventListener
 	public void initData(ContextRefreshedEvent arg0) {
@@ -37,19 +37,19 @@ public class DevBootstrap {
 		Book ddd = new Book("1234", "Domain Driven Design", harper);
 		eric.getBooks().add(ddd);
 		ddd.getAuthors().add(eric);
-		publisherRepo.save(harper);
-		authorRepo.save(eric);
-		bookRepo.save(ddd);
+		publisherService.create(harper);
+		authorService.create(eric);
+		bookService.create(ddd);
 
 		Author rod = new Author("Rod", "Johnson");
 		Publisher wrox = new Publisher("Wrox", "USA");
 		Book noEJB = new Book("1235", "J2EE Development without EJB", wrox);
-		publisherRepo.save(wrox);
+		publisherService.create(wrox);
 		rod.getBooks().add(noEJB);
 		noEJB.getAuthors().add(rod);
 
-		authorRepo.save(rod);
-		bookRepo.save(noEJB);
+		authorService.create(rod);
+		bookService.create(noEJB);
 	}
 
 }
