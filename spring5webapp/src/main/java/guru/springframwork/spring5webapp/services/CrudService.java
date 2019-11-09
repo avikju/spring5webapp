@@ -2,15 +2,19 @@ package guru.springframwork.spring5webapp.services;
 
 import org.springframework.data.repository.CrudRepository;
 
+import guru.springframwork.spring5webapp.annotation.LogExecutionTime;
+
 public interface CrudService<T, ID> {
 
 	CrudRepository<T, ID> getCrudRepo();
 
+	@LogExecutionTime
 	default T create(T t) {
 		getCrudRepo().save(t);
 		return t;
 	}
 
+	@LogExecutionTime
 	default Iterable<T> create(Iterable<T> t) {
 		return getCrudRepo().saveAll(t);
 	}

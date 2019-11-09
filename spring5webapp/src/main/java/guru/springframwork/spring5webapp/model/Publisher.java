@@ -55,4 +55,9 @@ public class Publisher {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		return "Publisher [id=" + id + ", name=" + name + ", address=" + address + "]";
+	}
 }
