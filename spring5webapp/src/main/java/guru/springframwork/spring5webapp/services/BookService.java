@@ -13,21 +13,22 @@ import guru.springframwork.spring5webapp.repositories.BookRepository;
 @Component
 public class BookService implements CrudService<Book, Long> {
 
-	@Autowired
-	BookRepository bookRepo;
+  @Autowired BookRepository bookRepo;
 
-	@Override
-	public CrudRepository<Book, Long> getCrudRepo() {
-		return bookRepo;
-	}
+  @Override
+  public CrudRepository<Book, Long> getCrudRepo() {
+    return bookRepo;
+  }
 
-	public Iterable<Book> findByPageNoWihSorting(int pageNo, int pageSize, String sortBy,
-			Sort.Direction sortDirection) {
+  public Iterable<Book> findByPageNoWihSorting(
+      int pageNo, int pageSize, String sortBy, Sort.Direction sortDirection) {
 
-		return bookRepo.findAll(PageRequest.of(pageNo, pageSize,
-				!ObjectUtils.isEmpty(sortBy)
-						? Sort.by(sortDirection != null ? sortDirection : Sort.Direction.ASC, sortBy)
-						: Sort.unsorted()));
-	}
-
+    return bookRepo.findAll(
+        PageRequest.of(
+            pageNo,
+            pageSize,
+            !ObjectUtils.isEmpty(sortBy)
+                ? Sort.by(sortDirection != null ? sortDirection : Sort.Direction.ASC, sortBy)
+                : Sort.unsorted()));
+  }
 }
